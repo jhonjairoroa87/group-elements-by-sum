@@ -17,7 +17,7 @@ void print_array(int *my_array, int array_length){
     cout << "]"<< endl;
 }
 
-// print elemens contained in a vector
+// print elements contained in a vector
 void print_vector(vector<int*> my_vector, int group_length){
     for (std::vector<int*>::iterator it = my_vector.begin() ; it != my_vector.end(); ++it){
         int* my_array = *it;
@@ -78,8 +78,9 @@ vector <int*> get_indexes_vectors(int array_length, int group_length, int init_i
         for( int j = 0; j < group_length-1; j++){
           new_group_array[j] = group_array[j];
         }
-
+        // change the last index to the next one
         new_group_array[group_length-1] = current_index;
+
         indexes_vector.push_back( new_group_array );
         current_index++;
     }
@@ -122,7 +123,7 @@ vector <int*> get_complete_indexes_vectors(int array_length, int group_length){
 //  - group_length: Length of the groups to be created. Ie 3
 //  - group_sum: Value the valid group elements should be equal. Ie 9
 // return vector that contains the group. Ie <[1,2,6], [2,3,4]>
-vector <int*> iterare_main_array(int *init_array, int array_length, int group_length, int group_sum){
+vector <int*> iterate_main_array(int *init_array, int array_length, int group_length, int group_sum){
     vector <int*> result_vector;
     vector <int*> indexes_vector = get_complete_indexes_vectors(array_length, group_length);
     // iterate the indexes to cerate the group and validate it sum value
@@ -147,8 +148,8 @@ int main() {
     // sort from lower to greater value
     sort(numbers, numbers + array_length);
     print_array(numbers, array_length);
-    // create the groups and identiby the ones that math the sum criteria
-    vector <int*> result_vector = iterare_main_array(numbers, array_length, group_length, group_sum);
+    // create the groups and identify the ones that math the sum criteria
+    vector <int*> result_vector = iterate_main_array(numbers, array_length, group_length, group_sum);
     print_vector(result_vector, group_length);
 
     return 0;
