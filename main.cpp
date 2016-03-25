@@ -74,9 +74,12 @@ vector <int*> get_indexes_vectors(int array_length, int group_length, int init_i
     int current_index = group_array[group_length-1];
     while( current_index < array_length ){
         int *new_group_array = new int[group_length];
-        new_group_array[0] = group_array[0];
-        new_group_array[1] = group_array[1];
-        new_group_array[2] = current_index;
+
+        for( int j = 0; j < group_length-1; j++){
+          new_group_array[j] = group_array[j];
+        }
+
+        new_group_array[group_length-1] = current_index;
         indexes_vector.push_back( new_group_array );
         current_index++;
     }
@@ -136,13 +139,14 @@ vector <int*> iterare_main_array(int *init_array, int array_length, int group_le
 
 int main() {
 
-    int array_length = 10; // number of elements the array will contain
-    int numbers [array_length] = { 8, 4, 3, 2, 5, 6, 7, 1, 9, 10 }; // numbers to be grouped
-    int group_length = 3;
-    int group_sum = 9;
+    int array_length = 20; // number of elements the array will contain
+    int numbers [array_length] = { 8, 4, 3, 2, 5, 6, 7, 1, 9, 10, 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19,20 }; // numbers to be grouped
+    int group_length = 4;
+    int group_sum = 11;
 
     // sort from lower to greater value
     sort(numbers, numbers + array_length);
+    print_array(numbers, array_length);
     // create the groups and identiby the ones that math the sum criteria
     vector <int*> result_vector = iterare_main_array(numbers, array_length, group_length, group_sum);
     print_vector(result_vector, group_length);
