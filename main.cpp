@@ -123,11 +123,11 @@ vector <int*> get_complete_indexes_vectors(int array_length, int group_length){
 //  - group_sum: Value the valid group elements should be equal. Ie 9
 // return vector that contains the group. Ie <[1,8], [2,7], [3,6] , [1,2,6], [2,3,4]>
 void iterate_main_array(int *init_array, int array_length, int group_sum){
-    // iterate thought all posible group lengths
+    // iterate thought all possible group lengths
     for( int group_length = 2; group_length < array_length; group_length++){
         vector <int*> result_vector;
         vector <int*> indexes_vector = get_complete_indexes_vectors(array_length, group_length);
-        // iterate the indexes to cerate the group and validate it sum value
+        // iterate the indexes to create the group and validate it sum value
         for (std::vector<int*>::iterator it = indexes_vector.begin() ; it != indexes_vector.end(); ++it){
             int* my_index_array = *it;
             int* values_group = create_array_group(init_array, group_length, my_index_array);
